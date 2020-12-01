@@ -1,5 +1,6 @@
 package jm.boot.model;
 
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -7,24 +8,66 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Set;
 
+// Для того, чтобы в дальнейшим использовать класс User в Spring Security, он должен реализовывать интерфейс UserDetails.
+// UserDetails можно представить, как адаптер между БД пользователей и тем что требуется Spring Security внутри SecurityContextHolder
 @Entity
-@Table(name ="person")
+@Table(name = "users")
 public class User implements UserDetails {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String username;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String username; // уникальное значение
     private String password;
-    private  boolean active;
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     //создвем таблицу юзерроль которая будет соединяться с текущей таблицец через юзер ид
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)//энам храниь в  виде строки
     private Set<Role> roles;
+    private String name;
+    private int year;
+    private String address;
+
+    public User(int id, String username,
+                String password, Set<Role> roles, String name, int year, String address) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
+        this.name = name;
+        this.year = year;
+        this.address = address;
+    }
+
+    public User() {
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getRoles();
+        return roles;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
     }
 
     @Override
@@ -44,39 +87,11 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return isActive();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
+        return true;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
     }
 
     public Set<Role> getRoles() {
@@ -85,5 +100,29 @@ public class User implements UserDetails {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

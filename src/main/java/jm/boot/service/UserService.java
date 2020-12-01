@@ -1,7 +1,7 @@
 package jm.boot.service;
 
 
-import jm.boot.repository.UserRepo;
+import jm.boot.dao.UserDao;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -9,16 +9,20 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService implements UserDetailsService {
-//    @Autowired
-    private UserRepo userRepo;
 
-    public UserService(UserRepo userRepo) {
-        this.userRepo = userRepo;
+    private final UserDao userDao;
+
+    public UserService(UserDao userDao) {
+        this.userDao = userDao;
     }
 
+
+    // «Пользователь» – это просто Object. В большинстве случаев он может быть
+    //  приведен к классу UserDetails.
+    // Для создания UserDetails используется интерфейс UserDetailsService, с единственным методом:
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepo.findByUsername(username);
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+      return userDao.getUserByName(s);
     }
 }
 
