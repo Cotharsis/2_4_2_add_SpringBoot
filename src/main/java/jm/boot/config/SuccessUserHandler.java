@@ -1,4 +1,4 @@
-package jm.boot.security;
+package jm.boot.config;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;

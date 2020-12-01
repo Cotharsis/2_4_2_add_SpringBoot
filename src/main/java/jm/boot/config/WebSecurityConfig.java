@@ -3,12 +3,16 @@ package jm.boot.config;
 
 import jm.boot.service.UserDetailsServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
 
@@ -16,56 +20,39 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
     @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
     public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-//        @Autowired
-//        private DataSource dataSource;
+
+    private final UserDetailsService userDetailsService; // сервис, с помощью которого тащим пользователя
+    private final SuccessUserHandler successUserHandler; // класс, в котором описана логика перенаправления пользователей по ролям
+
+    public  WebSecurityConfig(@Qualifier("userDetailsServiceImpl") UserDetailsService userDetailsService, SuccessUserHandler successUserHandler) {
+        this.userDetailsService = userDetailsService;
+        this.successUserHandler = successUserHandler;
+    }
         @Autowired
         private UserDetailsServiceImp userService;
 
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {//передает обьект
-            http
-                    .authorizeRequests()//авторизируем
-                        .antMatchers("/","/registration").permitAll()//раздрешаем полный доступ
-                        .anyRequest().authenticated()//на все остальные мы ребуем авторизацию
-                    .and()
-                         .formLogin()//вкл формлогин
-                        .loginPage("/login")//находитьься на этом мепинге
-                        .permitAll()//раздрешаем всем
-                    .and()
-                        .logout()//вкл логаут
-                        .logoutSuccessUrl("/")//чтобы после логаута попасть на главную страницу,
-                        .permitAll();//раздрешаем им пользоваться всем
-        }
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService)
-                .passwordEncoder(NoOpPasswordEncoder.getInstance());}
-
-
-
+    protected void configure(HttpSecurity http) throws Exception {
+        // http.csrf().disable(); //- попробуйте выяснить сами, что это даёт
+        http.authorizeRequests()
+                .antMatchers("/").permitAll() // доступность всем
+                // .antMatchers(HttpMethod.GET,"/user/**").hasAnyRole(Role.ROLE_USER.name(),Role.ROLE_ADMIN.name())
+                .antMatchers("/user/**").access("hasAnyRole('ROLE_USER','ROLE_ADMIN')") // разрешаем входить на /user пользователям с ролью User
+                .antMatchers("/admin/**").access("hasAnyRole('ROLE_ADMIN')")
+                .and().formLogin()  // Spring сам подставит свою логин форму
+                .successHandler(successUserHandler); // подключаем наш SuccessHandler для перенеправления по ролям
     }
-//        @Override
-//        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//            auth.jdbcAuthentication()
-//                    .dataSource(dataSource)//чтобы менеджер мог входить в бд и искать там пользователя и их роль
-//                    .passwordEncoder(NoOpPasswordEncoder.getInstance())
-//                    //запорс чтобы система могла найти пользователя по его имени
-//                    .usersByUsernameQuery("select username, password, active from person where username=?")
-//                    //запос помогает спрингу получить списолк пользователей с их ролями(запорс из таблицы персон
-//                    // присоедененной к ней таблице юзер_роль
-//                   // соединенные через поля юзер ид и ид  выбираем поля юзернаме и имя роли)
-//            .authoritiesByUsernameQuery("select u.username, " +
-//                    "ur.roles from person u inner join user_role ur on u.id = ur.user_id where u.username=?");
-//        }
-        //        @Bean болще не нужен
-//        @Override
-//        public UserDetailsService userDetailsService() {
-//            UserDetails user =
-//                    User.withDefaultPasswordEncoder()//нужен толкьо для отладки?
-//                            .username("user")
-//                            .password("password")
-//                            .roles("USER")
-//                            .build();
-//            return new InMemoryUserDetailsManager(user);//создает в апмяти менеджер который обслуживает запии учетные}
+
+    @Autowired
+    public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder()); // конфигурация для прохождения аутентификации
+    }
+
+    // Необходимо для шифрования паролей
+    // В данном примере не используется, отключен
+    @Bean
+    public static BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }}
 
 

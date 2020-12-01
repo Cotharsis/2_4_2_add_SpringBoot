@@ -1,4 +1,4 @@
-package jm.boot.security;//package jm.boot.example.security;
+package jm.boot.config;//package jm.boot.example.security;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
