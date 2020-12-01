@@ -7,15 +7,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-@Service
-public class UserService implements UserDetailsService {
+@Service("userDetailsServiceImpl")
+public class UserDetailsServiceImp implements UserDetailsService {
 
     private final UserDao userDao;
 
-    public UserService(UserDao userDao) {
+    public UserDetailsServiceImp(UserDao userDao) {
         this.userDao = userDao;
     }
-
 
     // «Пользователь» – это просто Object. В большинстве случаев он может быть
     //  приведен к классу UserDetails.

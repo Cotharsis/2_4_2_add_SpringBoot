@@ -3,6 +3,7 @@ package jm.boot.controller;
 
 import jm.boot.dao.UserDao;
 import jm.boot.model.User;
+import jm.boot.service.service.UserService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("")
 public class UserController {
 
-    private final UserDao userService;
+    private final UserService userService;
 
-    public UserController(UserDao userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 

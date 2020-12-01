@@ -1,7 +1,7 @@
 package jm.boot.config;
 
 
-import jm.boot.service.UserService;
+import jm.boot.service.UserDetailsServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -19,7 +19,7 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 //        @Autowired
 //        private DataSource dataSource;
         @Autowired
-        private UserService userService;
+        private UserDetailsServiceImp userService;
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {//передает обьект
