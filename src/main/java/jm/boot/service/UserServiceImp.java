@@ -1,4 +1,4 @@
-package jm.boot.service.service;
+package jm.boot.service;
 
 import jm.boot.dao.UserDao;
 import jm.boot.model.User;
@@ -12,11 +12,12 @@ import java.util.List;
 @Service
 public class UserServiceImp implements UserService {
     private final UserDao userDAO;
-  //  private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImp(UserDao userDAO) {
+    public UserServiceImp(UserDao userDAO, PasswordEncoder passwordEncoder) {
         this.userDAO = userDAO;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -28,7 +29,7 @@ public class UserServiceImp implements UserService {
     @Override
     @Transactional
     public void add(User user) {
-      //  user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDAO.add(user);
     }
 

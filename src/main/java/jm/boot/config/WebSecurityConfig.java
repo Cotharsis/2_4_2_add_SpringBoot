@@ -48,11 +48,10 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder()); // конфигурация для прохождения аутентификации
     }
 
-    // Необходимо для шифрования паролей
-    // В данном примере не используется, отключен
     @Bean
     public static BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }}
+    }
+}
 
 

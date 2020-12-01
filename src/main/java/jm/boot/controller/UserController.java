@@ -1,9 +1,8 @@
 package jm.boot.controller;
 
 
-import jm.boot.dao.UserDao;
 import jm.boot.model.User;
-import jm.boot.service.service.UserService;
+import jm.boot.service.UserService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

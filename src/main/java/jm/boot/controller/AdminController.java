@@ -1,10 +1,9 @@
 package jm.boot.controller;
 
 
-import jm.boot.dao.UserDao;
 import jm.boot.model.Role;
 import jm.boot.model.User;
-import jm.boot.service.service.UserService;
+import jm.boot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;

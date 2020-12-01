@@ -1,4 +1,4 @@
-package jm.boot.service.service;//package jm.boot.example.service;
+package jm.boot.service;//package jm.boot.example.service;
 
 
 
