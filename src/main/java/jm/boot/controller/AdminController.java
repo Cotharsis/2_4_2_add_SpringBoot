@@ -5,6 +5,7 @@ import jm.boot.model.Role;
 import jm.boot.model.User;
 import jm.boot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,11 +29,12 @@ public class AdminController {
 
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView allUsers() {
+    public ModelAndView allUsers(@AuthenticationPrincipal User user) {
         List<User> users = userService.allUsers();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("users");
         modelAndView.addObject("userList", users);
+        modelAndView.addObject("userA", user);
         return modelAndView;
     }
 
