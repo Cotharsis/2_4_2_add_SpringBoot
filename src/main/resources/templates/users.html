@@ -82,8 +82,18 @@
                                 <td th:text="${user.year}"></td>
                                 <td th:text="${user.username}"></td>
                                 <td th:text="${user.roles}"></td>
-                                <td> <a th:href="@{admin/edit/{id}(id=${user.id})}">edit</a> </td>
-                                <td> <a th:href="@{admin/delete/{id}(id=${user.id})}">delete</a> </td>
+                                <td>
+                                    <a th:href="@{admin/edit/{id}(id=${user.id})}" class="btn btn-info">edit</a>
+                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">
+                                        EDIT
+                                    </button>
+                                </td>
+                                <td>
+                                    <a th:href="@{admin/delete/{id}(id=${user.id})}" class="btn btn-danger">delete</a>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal2">
+                                        DELETE
+                                    </button>
+                                </td>
 
                             </tr>
                         </th:block>
@@ -92,74 +102,40 @@
                 <div class="tab-pane fade centered" id="characteristics">
 
                     <div class="container">
-
-                                <form class="text-align:center;" style="width: 400px;" >
+                        <form th:action="@{/admin}"  th:object="${userwed}" method="post">
+<!--                                <form class="text-align:center;" style="width: 400px;" >-->
 
                                 <div class="font-weight-bold ">
-                                    <d> <label for="formGroupExampleInput">First Name</label></d>
-                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="First Name">
+                                    <d> <label for="name">First Name</label></d>
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="First Name">
                                 </div>
                                 <div class="font-weight-bold">
-                                    <d> <label for="formGroupExampleInput2">Last Name</label></d>
-                                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Last Name">
+                                    <d> <label for="address">Last Name</label></d>
+                                    <input type="text" class="form-control" name="address" id="address" placeholder="Last Name">
                                 </div>
                                 <div class="font-weight-bold">
-                                    <d>  <label for="formGroupExampleInput2">Age</label></d>
-                                    <input type="text" class="form-control" id="formGroupExampleInput3" placeholder="Age">
+                                    <d>  <label for="year">Age</label></d>
+                                    <input type="text" class="form-control" name="year" id="year" placeholder="Age">
                                 </div>
                                 <div class="font-weight-bold">
-                                    <d> <label for="formGroupExampleInput2">Email</label></d>
-                                    <input type="text" class="form-control" id="formGroupExampleInput4" placeholder="Email">
+                                    <d> <label for="username">Email</label></d>
+                                    <input type="text" class="form-control" name="username" id="username" placeholder="Email">
                                 </div>
                                 <div class="font-weight-bold">
-                                    <d> <label for="formGroupExampleInput2">Password</label></d>
-                                    <input type="text" class="form-control" id="formGroupExampleInput5" placeholder="Password">
+                                    <d> <label for="password">Password</label></d>
+                                    <input type="text" class="form-control" name="password" id="password" placeholder="Password">
                                 </div>
                                 <div class="font-weight-bold">
                                     <d> <label for="formGroupExampleInput2">Role</label></d>
-                                    <input type="text" class="form-control" id="formGroupExampleInput6" placeholder="Another input">
+                                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
                                 </div>
 
-                            </form>
+                                    <br>
+
+                                    <input type="submit" class="btn btn-success" value="Add new user">
+<!--                                </form>-->
+                        </form>
                     </div>
-
-                    <table border="1" width="16%">
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Field</th>
-                        </tr>
-                        <th:block>
-
-                            <tr>
-                                <td><label for="username">Username</label></td>
-                                <td><input type="text" name="username" id="username"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="password">Password</label></td>
-                                <td><input type="text" name="password" id="password"></td>
-                            </tr>
-
-                            <tr>
-                                <td><label for="name">Name</label></td>
-                                <td><input type="text" name="name" id="name"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="year">Year</label></td>
-                                <td><input type="text" name="year" id="year"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="address">Address</label></td>
-                                <td><input type="text" name="address" id="address"></td>
-                            </tr>
-                        </th:block>
-                    </table>
-                    <br>
-                    <input type="submit" value="Add new user">
-
-
-                    <h2>Add</h2>
-
-                    <a th:href="@{admin/add}">Add new user</a>
                 </div>
 
             </div>
@@ -171,27 +147,38 @@
 
     <br>
     <br>
-    <h5 class="card-title">Специальный заголовок</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
-    <br>
-    <br>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Запустить модальное окно
-    </button>
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal1 -->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel1">Modal title</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    ...eeddiiiiiittttttt
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal2 -->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel2">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...deleteeeee
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
