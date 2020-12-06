@@ -104,66 +104,67 @@
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel1">Modal title</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel1">Edit user</h5>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    ...eeddiiiiiittttttt
-                                                    <form th:action="@{/admin}" th:object="${user}" method="post">
-                                                        <table border="1" width="16%">
-                                                            <th:block>
 
-                                                                <!--                                <div class="form-group">-->
-                                                                <!--                                    <h3>Name</h3>-->
-                                                                <!--                                    <input type="text" name="name1" id="name1"-->
-                                                                <!--                                           th:placeholder="${user.name}">-->
-                                                                <!--                                </div>-->
+                                                    <div class = "row">
+                                                        <div class="col-lg-3 "></div>
+                                                        <div class="col-lg-6 text-align:center;">
+                                                            <form th:action="@{/admin}"  th:object="${userwed}" method="post">
+                                                                <div class="form-group">-->
+                                                                    <!--                                                                    <h3>Name</h3>-->
+                                                                    <!--                                                                    <input type="text" name="name1" id="name1"-->
+                                                                    <!--                                                                           th:placeholder="${user.name}">-->
+                                                                    <!--                                                                </div>-->
+                                                                <div class="font-weight-bold ">
+                                                                    <d> <label for="name">First Name</label></d>
+                                                                    <input type="text" class="form-control" name="name" id="name1" th:placeholder="${user.name}">
+                                                                </div>
+                                                                <div class="font-weight-bold">
+                                                                    <d> <label for="address">Last Name</label></d>
+                                                                    <input type="text" class="form-control" name="address" id="address1"  th:placeholder="${user.address}">
+                                                                </div>
+                                                                <div class="font-weight-bold">
+                                                                    <d>  <label for="year">Age</label></d>
+                                                                    <input type="text" class="form-control" name="year" id="year1"  th:placeholder="${user.year}">
+                                                                </div>
+                                                                <div class="font-weight-bold">
+                                                                    <d> <label for="username">Email</label></d>
+                                                                    <input type="text" class="form-control" name="username" id="username1" th:placeholder="${user.name}">
+                                                                </div>
+                                                                <div class="font-weight-bold">
+                                                                    <d> <label for="password">Password</label></d>
+                                                                    <input type="text" class="form-control" name="password" id="password1" th:placeholder="${user.password}">
+                                                                </div>
+                                                                <div class="font-weight-bold">
+                                                                    <d> <label for="formGroupExampleInput2">Role</label></d>
+                                                                    <input type="text" class="form-control" id="formGroupExampleInput1" placeholder="Another input">
+                                                                </div>
+                                                                </div>
+                                                                <br>
 
-                                                                <tr>
-                                                                    <td><label for="username">Username</label></td>
-                                                                    <td><input type="text" name="username"
-                                                                               th:placeholder="${user.name}" id="username">
-                                                                    </td>
-                                                                </tr>
-                                                                <!--                                <tr>-->
-                                                                <!--                                    <td><label for="passsword">Password</label></td>-->
-                                                                <!--                                    <td><input type="text" name="password1"-->
-                                                                <!--                                               th:placeholder="${user.password}" id="passsword">-->
-                                                                <!--                                    </td>-->
-                                                                <!--                                </tr>-->
-                                                                <!--                                <tr>-->
-                                                                <!--                                    <td><label>Roles</label></td>-->
-                                                                <!--                                    <td>-->
+                                                            </form>
+                                                        </div>
+                                                    </div>
 
-                                                                <!--                                        <div th:each="roleA : ${allRoles}">-->
-                                                                <!--                                            <input type="checkbox" th:field="*{roles}"-->
-                                                                <!--                                                   th:value="${roleA}"/>-->
-                                                                <!--                                            <span th:text="${roleA}"-->
-                                                                <!--                                                  th:remove="tag"> </span>-->
-                                                                <!--                                        </div>-->
-                                                                <!--                                    </td>-->
-                                                                <!--                                </tr>-->
-                                                                <tr>
-                                                                    <td><label for="name">Name</label></td>
-                                                                    <td><input type="text" name="name"
-                                                                               th:placeholder="${user.name}" id="name"></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><label for="year">Year</label></td>
-                                                                    <td><input type="text" name="year"
-                                                                               th:placeholder="${user.year}" id="year"></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><label for="address">Address</label></td>
-                                                                    <td><input type="text" name="address"
-                                                                               th:placeholder="${user.address}" id="address"></td>
-                                                                </tr>
-                                                            </th:block>
+<!--                                                                <tr>-->
+<!--                                                                    <td><label>Roles</label></td>-->
+<!--                                                                    <td>-->
 
-                                                        </table>
+<!--                                                                        <div th:each="roleA : ${allRoles}">-->
+<!--                                                                            <input type="checkbox" th:field="*{roles}"-->
+<!--                                                                                   th:value="${roleA}"/>-->
+<!--                                                                            <span th:text="${roleA}"-->
+<!--                                                                                  th:remove="tag"> </span>-->
+<!--                                                                        </div>-->
+<!--                                                                    </td>-->
+<!--                                                                </tr>-->
+
                                                         <br>
                                                         <input type="submit" value="Edit user">
                                                     </form>
