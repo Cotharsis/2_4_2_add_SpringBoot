@@ -16,15 +16,10 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
-    <form  th:action="@{/admin/edit/{id}(id=${user.getId()})}" th:object="${user}" method="post">
-
-
-    <table border="1" width="16%">
+    <form  th:action="@{/admin/edit/{id}(id=${User.getId()})}" th:object="${User}" method="post">
+        <table border="1" width="16%">
         <tr><th>Parameter</th><th>Field</th></tr>
-
         <th:block>
-
-            <!--        <input type="hidden" name="id" value="${user.id}">-->
             <tr>
                 <td><label for="username">Username</label></td>
                 <td><input type="text" name="username" th:field="*{username}" id="username"></td>
@@ -36,7 +31,6 @@
             <tr>
                 <td><label>Roles</label></td>
                 <td>
-
                     <div  th:each="roleA : ${allRoles}" >
                         <input type="checkbox"  th:field="*{roles}" th:value="${roleA}" />
                         <span th:text="${roleA}" th:remove="tag"> </span>
@@ -57,10 +51,10 @@
             </tr>
         </th:block>
 
-    </table>
-    <br>
-    <input type="submit" value="Edit user">
+        </table>
+        <br>
+        <input type="submit" value="Edit user">
+    </form>
 
-</form>
 </body>
 </html>
