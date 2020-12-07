@@ -81,26 +81,24 @@
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
-                        <th:block th:each="user : ${userList}">
+                        <th:block th:each="userq : ${userList}">
                             <tr>
 
-                                <td th:text="${user.id}"></td>
-                                <td th:text="${user.name}"></td>
-                                <td th:text="${user.address}"></td>
-                                <td th:text="${user.year}"></td>
-                                <td th:text="${user.username}"></td>
-                                <td th:text="${user.roles}"></td>
+                                <td th:text="${userq.id}"></td>
+                                <td th:text="${userq.name}"></td>
+                                <td th:text="${userq.address}"></td>
+                                <td th:text="${userq.year}"></td>
+                                <td th:text="${userq.username}"></td>
+                                <td th:text="${userq.roles}"></td>
                                 <td>
-                                    <a th:href="@{admin/edit/{id}(id=${user.id})}" class="btn btn-info">edit</a>
+                                    <a th:href="@{admin/edit/{id}(id=${userq.id})}" class="btn btn-info">edit</a>
 
-
-                                    <button type="button" class="btn btn-info" data-toggle="modal"
-                                            data-target="#exampleModal1">
-                                        EDIT
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" th:data-target="'#edit-modal-' + ${userq.id}">
+                                        <a>EDIT</a>
                                     </button>
+
                                     <!-- Modal1 -->
-                                    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog"
-                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div th:id="'edit-modal-' + ${userq.id}" class="modal" tabindex="-1">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -117,44 +115,31 @@
                                                         <div class="col-lg-6 text-align:center;">
                                                             <form th:action="@{/admin}"  th:object="${userwed}" method="post">
                                                                 <div class="form-group">-->
-                                                                    <!--                                                                    <h3>Name</h3>-->
-                                                                    <!--                                                                    <input type="text" name="name1" id="name1"-->
-                                                                    <!--                                                                           th:placeholder="${user.name}">-->
-                                                                    <!--                                                                </div>-->
+
                                                                 <div class="font-weight-bold ">
                                                                     <d> <label for="name">First Name</label></d>
-                                                                    <input type="text" class="form-control" name="name" id="name1" th:placeholder="${user.name}">
+                                                                    <input type="text" class="form-control" name="name" id="name1" th:value="${userq.name}" th:placeholder="firsName">
                                                                 </div>
                                                                 <div class="font-weight-bold">
                                                                     <d> <label for="address">Last Name</label></d>
-                                                                    <input type="text" class="form-control" name="address" id="address1"  th:placeholder="${user.address}">
+                                                                    <input type="text" class="form-control" name="address" id="address1"  th:value="${userq.address}" th:placeholder="lastName">
                                                                 </div>
                                                                 <div class="font-weight-bold">
                                                                     <d>  <label for="year">Age</label></d>
-                                                                    <input type="text" class="form-control" name="year" id="year1"  th:placeholder="${user.year}">
+                                                                    <input type="text" class="form-control" name="year" id="year1" th:value="${userq.year}" th:placeholder="age">
                                                                 </div>
                                                                 <div class="font-weight-bold">
                                                                     <d> <label for="username">Email</label></d>
-                                                                    <input type="text" class="form-control" name="username" id="username1" th:placeholder="${user.name}">
+                                                                    <input type="text" class="form-control" name="username" id="username1" th:value="${userq.username}" th:placeholder="email">
                                                                 </div>
                                                                 <div class="font-weight-bold">
                                                                     <d> <label for="password">Password</label></d>
-                                                                    <input type="text" class="form-control" name="password" id="password1" th:placeholder="${user.password}">
+                                                                    <input type="text" class="form-control" name="password" id="password1" th:value="${userq.password}" th:placeholder="password">
                                                                 </div>
                                                                 <div class="font-weight-bold">
                                                                     <d> <label for="formGroupExampleInput2">Role</label></d>
                                                                     <input type="text" class="form-control" id="formGroupExampleInput1" placeholder="Another input">
-                                                                </div>
-                                                                </div>
-                                                                <br>
 
-                                                            </form>
-                                                        </div>
-                                                    </div>
-
-<!--                                                                <tr>-->
-<!--                                                                    <td><label>Roles</label></td>-->
-<!--                                                                    <td>-->
 
 <!--                                                                        <div th:each="roleA : ${allRoles}">-->
 <!--                                                                            <input type="checkbox" th:field="*{roles}"-->
@@ -162,26 +147,34 @@
 <!--                                                                            <span th:text="${roleA}"-->
 <!--                                                                                  th:remove="tag"> </span>-->
 <!--                                                                        </div>-->
-<!--                                                                    </td>-->
-<!--                                                                </tr>-->
 
-                                                        <br>
-                                                        <input type="submit" value="Edit user">
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Close
-                                                    </button>
-                                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                                </div>
+
+                                                                </div>
+                                                                <br>
+                                                                <br>
+
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    <button type="submit" class="btn btn-primary">Edit user</button>
+                                                                </div>
+
+                                                            </form>
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+
                                             </div>
                                         </div>
                                     </div>
 
                                 </td>
                                 <td>
-                                    <a th:href="@{admin/delete/{id}(id=${user.id})}" class="btn btn-danger">delete</a>
+                                    <a th:href="@{admin/delete/{id}(id=${userq.id})}" class="btn btn-danger">delete</a>
                                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal2">
                                         DELETE
                                     </button>
