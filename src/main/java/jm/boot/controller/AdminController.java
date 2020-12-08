@@ -33,6 +33,7 @@ public class AdminController {
         modelAndView.setViewName("users");
         modelAndView.addObject("userList", users);
         modelAndView.addObject("userA", user);
+        modelAndView.addObject("allRoles", Role.values());
         return modelAndView;
     }
 
@@ -41,11 +42,11 @@ public class AdminController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/admin");
         List<User> usersis = userService.allUsers();
-        if(usersis.contains(user)==true){
-            userService.edit(user);}
-        else{
-            user.setRoles(Collections.singleton(Role.ROLE_USER));
-            userService.add(user);}
+//        if(usersis.contains(user)==false){
+            userService.edit(user);
+//    }else{
+//            user.setRoles(Collections.singleton(Role.ROLE_USER));
+//            userService.add(user);}
         return modelAndView;
     }
 
@@ -62,7 +63,7 @@ public class AdminController {
         return modelAndView;
     }
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-    public ModelAndView editUser(@ModelAttribute("user") User user, @PathVariable("id") int id) {
+    public ModelAndView editUser(@ModelAttribute User user, @PathVariable("id") int id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/admin");
         userService.edit(user);
