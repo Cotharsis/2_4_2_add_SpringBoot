@@ -85,9 +85,6 @@
                                             <td th:text="${userq.username}"></td>
                                             <td th:text="${userq.roles}"></td>
                                             <td>
-                                                <a th:href="@{admin/edit/{id}(id=${userq.id})}"
-                                                   class="btn btn-info">edit</a>
-
                                                 <button type="button" class="btn btn-primary" data-toggle="modal"
                                                         th:data-target="'#edit-modal-' + ${userq.id}">
                                                     <a>EDIT</a>
