@@ -258,7 +258,7 @@
                                                             </div>
 
                                                             <div class="font-weight-bold">
-                                                                <d><label for="formGroupExampleInput2">Role</label></d>
+                                                                <d><label for="formGroupExampleInput3">Role</label></d>
                                                                 <input type="text" class="form-control"
                                                                        id="formGroupExampleInput3"
                                                                        placeholder="Another input">
@@ -302,8 +302,9 @@
                                     </div>
                                     <div class="font-weight-bold">
                                         <d><label for="year">Age</label></d>
-                                        <input type="text" class="form-control" name="year" id="year" placeholder="Age">
+                                        <input type="number" class="form-control" value="1"  name="year" id="year" placeholder="Age">
                                     </div>
+
                                     <div class="font-weight-bold">
                                         <d><label for="username">Email</label></d>
                                         <input type="text" class="form-control" name="username" id="username"
@@ -314,23 +315,22 @@
                                         <input type="text" class="form-control" name="password" id="password"
                                                placeholder="Password">
                                     </div>
-                                        <select multiple class="form-control" type="text" name="roles" id="roles">
-                                            <div th:each="roleA : ${allRoles}"><option th:text="${roleA}"></option></div>
-                                        </select>
-<!--                                    <div class="form-group">-->
-<!--                                        <label  for="role">Role</label>-->
-<!--                                        <select multiple class="form-control" type="text" name="role" id="role">-->
-<!--                                            <option>ROLE_ADMIN</option>-->
-<!--                                            <option>ROLE_ADMIN</option>-->
-<!--                                            <option>ROLE_ADMIN</option>-->
-<!--                                            <option>ROLE_USER</option>-->
-<!--                                        </select>-->
-<!--                                    </div>-->
+
                                     <div class="font-weight-bold">
-                                        <d><label for="formGroupExampleInput2">Role</label></d>
-                                        <input type="text" class="form-control" id="formGroupExampleInput2"
-                                               placeholder="Another input">
+                                        <label  for="roles">Role</label>
+<!--                                        <select multiple class="form-control" type="text" name="roles" id="roles">-->
+<!--                                            <div th:each="roleA : ${allRoles}">-->
+<!--                                                <option th:text="${roleA}"></option>-->
+<!--                                            </div>-->
+<!--                                        </select>-->
+                                        <select multiple class="form-control input-sm" type="text" name="roles" id="roles"
+                                                style="height: 60px;">
+                                            <option>ROLE_ADMIN</option>
+                                            <option>ROLE_USER</option>
+                                        </select>
                                     </div>
+
+
                                     <br>
 
                                     <input type="submit" class="btn btn-success" value="Add new user">
