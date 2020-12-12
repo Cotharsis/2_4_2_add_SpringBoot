@@ -51,7 +51,7 @@ public class AdminController {
     }
 
 
-
+//|ghjd
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public ModelAndView editPage(@PathVariable("id") int id) {
