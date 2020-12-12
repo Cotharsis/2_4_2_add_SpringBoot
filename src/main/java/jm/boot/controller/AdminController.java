@@ -15,7 +15,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-@Controller
+@RestController
 @RequestMapping("/admin")
 public class AdminController {
     @Autowired
@@ -50,10 +50,7 @@ public class AdminController {
         return modelAndView;
     }
 
-
-//|ghjd
-
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    @GetMapping("/edit/{id}")
     public ModelAndView editPage(@PathVariable("id") int id) {
         User user = userService.getById(id);
         ModelAndView modelAndView = new ModelAndView();
@@ -69,30 +66,7 @@ public class AdminController {
         userService.edit(user);
         return modelAndView;
     }
-//    @RequestMapping(value = "/user-update", method = RequestMethod.POST)
-//    public ModelAndView updateUser(
-//            @RequestParam(value = "id1", required = false ) Integer id,
-//            @RequestParam(value = "name1", required = false ) String name,
-//            @RequestParam(value = "password1", required = false ) String password,
-//            @RequestParam(value = "role1", required = false ) String role) {
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("redirect:/users");
-//        System.out.println(id + " " + name + " " + password + " " + role);
-//        User user = new User();
-//        user.setId(id);
-//        user.setName(name);
-//        user.setPassword(password);
-//        if (!role.equals("ROLE_ADMIN")) role = "ROLE_USER";
-//        List<Long> rolesId = new ArrayList<>(); //чистый лист
-//        for (Role role1 : userService.findAllRole()){
-//            rolesId.add(role1.getId());
-//        }
-//        Role role2 = new Role(Collections.max(rolesId) + 1L, role);
-//        userService.saveRole(role2);
-//        user.setRoles(Collections.singleton(role2));
-//        userService.saveUser(user);
-//        return modelAndView;
-//    }
+
 
 //    @RequestMapping(value = "/add", method = RequestMethod.GET)
 //    public ModelAndView addPage() {
