@@ -15,7 +15,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-@RestController
+@Controller
 @RequestMapping("/admin")
 public class AdminController {
     @Autowired
