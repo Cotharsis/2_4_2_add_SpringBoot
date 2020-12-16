@@ -18,7 +18,7 @@ import java.util.Set;
 
 
 @RestController
-@RequestMapping("/adminn")
+@RequestMapping("/adminnn")
 public class AdminRestController {
 
     @Autowired
@@ -28,15 +28,9 @@ public class AdminRestController {
         this.userService = userService;
     }
 
- List <User> lista=new ArrayList<>();{
-     lista.add(new User(10,"asda","dfs",null,null,123,"213"));
-     lista.add(new User(1,"asda3","dfs",null,null,12,"213"));
-    }
-
     @PostMapping
     public User create(@RequestBody User user) {
-        lista.add(user);
-//        userService.edit(user);
+        userService.add(user);
         return user;
     }
 
@@ -69,23 +63,21 @@ public class AdminRestController {
 
     @GetMapping
     public ResponseEntity<List<User>> read() {
-        final List<User> clients = lista;
-//        final List<User> clients = userService.allUsers();
-
+        final List<User> clients = userService.allUsers();
         return clients != null &&  !clients.isEmpty()
                 ? new ResponseEntity<>(clients, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-//
-//    @GetMapping(value = "/{id}")
-//    public ResponseEntity<User> read(@PathVariable(name = "id") int id) {
-//        final User client = userService.getById(id);
-//
-//        return client != null
-//                ? new ResponseEntity<>(client, HttpStatus.OK)
-//                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//    }
-//
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<User> read(@PathVariable(name = "id") int id) {
+        final User client = userService.getById(id);
+
+        return client != null
+                ? new ResponseEntity<>(client, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
 //
 ////    @PutMapping ("/edit/{id}")
 ////    public ModelAndView editUser(@ModelAttribute User user, @PathVariable("id") int id) {
@@ -96,25 +88,23 @@ public class AdminRestController {
 ////    }
     @PutMapping
     public ResponseEntity<User> update(@RequestBody User user) {
-     lista.remove(user.getId());
-     lista.add(user);
-//         userService.edit(user);
-//        return user;
+         userService.edit(user);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 //
 //
 //
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<?> delete(@PathVariable(name = "id") int id) {
-//
-////        lista.remove(id);
-//       // final boolean deleted = userService.delete(userService.getById(id));
-//
-//        return
-//                 new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
-//
-//    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable(name = "id") int id) {
+
+        userService.delete(userService.getById(id));
+       // final boolean deleted = userService.delete(userService.getById(id));
+
+//        return userService.getById(id) == null
+//                ? new ResponseEntity<>(HttpStatus.OK)
+              return new ResponseEntity<>(HttpStatus.OK);
+//                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    }
 ////
 ////    @DeleteMapping(value = "/delete/{id}")
 ////    public ModelAndView deleteUser(@PathVariable("id") int id) {

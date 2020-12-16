@@ -37,18 +37,42 @@ public class AdminController {
         return modelAndView;
     }
 
+//    @RequestMapping(method = RequestMethod.POST)
+//    public ModelAndView addEditUser(@ModelAttribute("user") User user) {
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("redirect:/admin");
+//        userService.edit(user);
+//        return modelAndView;
+//    }
+
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView addEditUser(@ModelAttribute("user") User user) {
+    public ModelAndView addUser(@ModelAttribute("user") User user) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/admin");
-        List<User> usersis = userService.allUsers();
-//        if(usersis.contains(user)==false){
-            userService.edit(user);
-//    }else{
-//            user.setRoles(Collections.singleton(Role.ROLE_USER));
-//            userService.add(user);}
+      // user.setRoles(Collections.singleton(Role.ROLE_USER));
+//      user.setRoles(Set.of(Role.ROLE_USER, Role.ROLE_ADMIN));
+//        userService.add(user);
+        userService.edit(user);
         return modelAndView;
     }
+
+
+    @RequestMapping(value="/delete/{id}", method = RequestMethod.GET)
+    public ModelAndView deleteUser(@PathVariable("id") int id) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/admin");
+        User user = userService.getById(id);
+        userService.delete(user);
+        return modelAndView;
+    }
+
+
+
+
+
+
+
+
 
     @GetMapping("/edit/{id}")
     public ModelAndView editPage(@PathVariable("id") int id) {
@@ -64,33 +88,6 @@ public class AdminController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/admin");
         userService.edit(user);
-        return modelAndView;
-    }
-
-
-//    @RequestMapping(value = "/add", method = RequestMethod.GET)
-//    public ModelAndView addPage() {
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("addUser");
-//        return modelAndView;
-//    }
-//    @RequestMapping(value = "/add", method = RequestMethod.POST)
-//    public ModelAndView addUser(@ModelAttribute("user") User user) {
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("redirect:/admin");
-//        user.setRoles(Collections.singleton(Role.ROLE_USER));
-////      user.setRoles(Set.of(Role.ROLE_USER, Role.ROLE_ADMIN));
-//        userService.add(user);
-//        return modelAndView;
-//    }
-
-
-    @RequestMapping(value="/delete/{id}", method = RequestMethod.GET)
-    public ModelAndView deleteUser(@PathVariable("id") int id) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/admin");
-        User user = userService.getById(id);
-        userService.delete(user);
         return modelAndView;
     }
 
