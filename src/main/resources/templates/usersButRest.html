@@ -91,47 +91,47 @@
 <!--                                        <form th:action="@{/admin}" method="post">-->
 
                                             <div class="font-weight-bold ">
-                                                <d><label for="name">First Name</label></d>
-                                                <input type="text" class="form-control" name="name" id="name"
+                                                <d><label for="addName">First Name</label></d>
+                                                <input type="text" class="form-control" name="name" id="addName"
                                                        placeholder="First Name">
                                             </div>
                                             <div class="font-weight-bold">
-                                                <d><label for="address">Last Name</label></d>
-                                                <input type="text" class="form-control" name="address" id="address"
+                                                <d><label for="addAddress">Last Name</label></d>
+                                                <input type="text" class="form-control" name="address" id="addAddress"
                                                        placeholder="Last Name">
                                             </div>
                                             <div class="font-weight-bold">
-                                                <d><label for="year">Age</label></d>
-                                                <input type="number" class="form-control" value="1" name="year"
-                                                       id="year"
+                                                <d><label for="addYear">Age</label></d>
+                                                <input type="number" class="form-control" value="1" name="year" id="addYear"
                                                        placeholder="Age">
                                             </div>
 
                                             <div class="font-weight-bold">
-                                                <d><label for="username">Email</label></d>
-                                                <input type="text" class="form-control" name="username"
-                                                       id="username"
+                                                <d><label for="addUsername">Email</label></d>
+                                                <input type="text" class="form-control" name="username" id="addUsername"
                                                        placeholder="Email">
                                             </div>
                                             <div class="font-weight-bold">
-                                                <d><label for="password">Password</label></d>
-                                                <input type="text" class="form-control" name="password"
-                                                       id="password"
+                                                <d><label for="addPassword">Password</label></d>
+                                                <input type="text" class="form-control" name="password" id="addPassword"
                                                        placeholder="Password">
                                             </div>
 
                                             <div class="font-weight-bold">
-                                                <label for="roles">Role</label>
-                                                <select multiple class="form-control" type="text" name="roles"
-                                                        id="roles"
-                                                        style="height: 60px;">
-<!--                                                    <div th:each="roleA : ${allRoles}">-->
+                                                <label for="addRoles">Role</label>
+                                                <select multiple class="form-control" type="text" name="roles" id="addRoles" style="height: 60px;">
+                                                        <option text="ROLE_ADMIN"> ROLE_ADMIN</option>
+                                                        <option text="ROLE_USER">ROLE_USER</option>
+<!--                                                    </div>:each="roleA : ${allRoles}">-->
 <!--                                                        <option th:text="${roleA}"></option>-->
 <!--                                                    </div>-->
                                                 </select>
                                             </div>
                                             <br>
-                                            <input type="submit" class="btn btn-success" value="Add new user">
+<!--                                        <button id="sumbitAdd" type="submit" class="btn btn-success">Add new user </button>-->
+<!--                                        <input id="sumbitAdd" type="submit" class="btn btn-success" value="Add new user">-->
+<!--                                        <button type="button" class="btn btn-primary" id="sumbitAdd">Add new us</button>-->
+                                        <button onclick="ad()"  type="button" class="btn btn-primary" id="sumbitAdd">Edit</button>
 <!--                                        </form>-->
                                     </div>
                                 </div>
@@ -188,92 +188,101 @@
     </div>
 </div>
 </div>
-<script src="dobavka.js"></script>
 <!-- Modal1 -->
 <div class="modal" id="ModalEdit" tabindex="-1" role="dialog" >
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Edit
-                    user</h5>
-                <button type="button" class="close"
-                        data-dismiss="modal"
-                        aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <h5 class="modal-title" id="exampleModalLabel1">Edit user</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
-            <div class="modal-body">
-
-                <div class="row">
-                    <div class="col-lg-3 "></div>
-                    <div class="col-lg-6 text-align:center;">
-                        <!--                                                                        <form th:action="@{/admin}" th:method="post">-->
-                        <div id="editBody" class="form-group">
-
-
-                        </div>
-
-
-                    </div>
-                </div>
-                <div class=" modal-footer col-md-10 mx-auto"
-                     style="float:right;">
-
-                    <button type="button"
-                            class="btn btn-secondary"
-                            data-dismiss="modal">Close
-                    </button>
-                    <button type="submit"
-                            class="btn btn-primary">Edit user
-                    </button>
-                </div>
-                </form>
+            <div id="editBody" class="modal-body">
+ <!--                            Реализация модалки редактирования-->
             </div>
         </div>
     </div>
 </div>
 <!-- Modal2 -->
 <div class="modal" id="ModalDelete" tabindex="-1" role="dialog" >
-    <!--                                           "<button type='button' "-->
-    <!--                                            + "data-target='#ModalDelete' data-user-id='" + u.id + "'>-->
-
-    <!--                                    //      <button type="button"  -->
-    <!--                                    //         th:data-target="'#edit-modal2-' + ${userq.id}">-->
-
-    <!--                                                <div th:id="'#ModalDelete' data-user-id=$"u.id"" class="modal" tabindex="-1">-->
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel2">Delete user</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                    <!--                                                                    <div class="top"><a href="#" class="link close"/>×</a></div>-->
                 </button>
             </div>
-
-            <div class="modal-body">
-
-                <div class="row">
-                    <div class="col-lg-3 "></div>
-                    <div class="col-lg-6 text-align:center;">
-                        <div id=deleteBody class="form-group">
-
-
-                        </div>
-                    </div>
-
-                </div>
-                <div class=" modal-footer col-md-12 mx-auto"
-                     style="float:right;">
-                    <button type="button" id="delete" name="id" value="1" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <a id="buttonDeleteSubmit" class="btn btn-danger">Delete</a>
-                </div>
+            <div id=deleteBody class="modal-body">
+<!--                            Реализация модалки удвления-->
             </div>
         </div>
     </div>
 </div>
-<script src="../javascript/untitled.js"></script>
-<!-- Script -->
+
+<!--кнопка редактирования-->
+<script>
+    async function ed(id){
+        const userByIdURL = `http://localhost:8080/adminn/${id}`
+        console.log('editUser activated')
+        // fetch(userByIdURL,{
+        //     method: 'DELETE'
+        // })
+    }
+</script>
+<!--кнопка удаления-->
+<script>
+    async function del(id){
+        const userByIdURL = `http://localhost:8080/adminn/${id}`
+        console.log('deleteUser activated')
+        fetch(userByIdURL,{
+            method: 'DELETE'
+        })}
+
+    // async function del(id){
+    //     alert(id)
+    //     $.ajax({
+    //         url: 'http://localhost:8080/adminn/' + id,
+    //         type: 'DELETE',
+    //         success: function(result) {
+    //             // Do something with the result
+    //         }
+    // })}
+
+    // });
+    // $.ajax({
+    //     url: "http://localhost:8080/adminn/" + id,
+    //     type: "DELETE",
+    //     dataType: "text"
+    // }).done(() => {
+    //     location.reload();
+    // })
+    // alert(id)}
+
+
+</script>
+<!--кнопка добавления-->
+<script>
+    async function ad(){
+        const userByIdURL = `http://localhost:8080/adminn`
+        console.log('addUser')
+        fetch(userByIdURL,{
+            method: 'POST',
+
+            body: JSON.stringify({
+                name: $('#addName').val(),
+                address: $('#addAddress').val(),
+                year: $('#addYear').val(),
+                username: $('#addUsername').val(),
+                password: $('#addPassword').val(),
+                roles: $("#addRoles").val()
+            }),
+            headers: {'Content-type': 'application/json; charset=UTF-8'}
+        })
+        location.reload();
+    }
+
+</script>
+<!-- все пользователи -->
 <script>
     fetch("http://localhost:8080/adminn/ad").then(
         res => {
@@ -309,13 +318,8 @@
         }
     )
 </script>
-
-
-<script src="../javascript/untitled.js"></script>
 <!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <div>
-        <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
                 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -326,7 +330,6 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
                 crossorigin="anonymous"></script>
-
 </div>
 <!--модалка редактирование-->
 <script>
@@ -338,7 +341,11 @@
         let modal= document.querySelector('#editBody')
 
         modal.innerHTML=
-            `
+            ` <div class="row">
+                    <div class="col-lg-3 "></div>
+                    <div class="col-lg-6 text-align:center;">
+                        <div  class="form-group">
+
                             <div  class="font-weight-bold ">
                                 <d><label for="id">ID</label></d>
                                 <input type="text"
@@ -403,7 +410,16 @@
                                          placeholder="${content.roles}">
                                     </select>
                                 </div>
-                            </div>`
+                            </div>
+                           </div>
+                    </div>
+                </div>
+                <div class=" modal-footer col-md-10 mx-auto" style="float:right;">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button onclick="ed(${content.id})"  type="button" class="btn btn-primary" id="buttonEditSubmit">Edit</button>
+                </div>
+
+`
 
     }
 
@@ -418,7 +434,12 @@
         let modal= document.querySelector('#deleteBody')
 
         modal.innerHTML=
-            `
+            `<div class="row">
+                    <div class="col-lg-3 "></div>
+                    <div class="col-lg-6 text-align:center;">
+                        <div  class="form-group">
+
+
                             <div  class="font-weight-bold ">
                                 <d><label for="id">ID</label></d>
                                 <input type="text"
@@ -476,8 +497,18 @@
                                           disabled>
                                     </select>
                                 </div>
-                            </div>`}
+                            </div>
 
+     </div>
+                    </div>
+                </div>
+                <div class=" modal-footer col-md-12 mx-auto" style="float:right;">
+                    <button type="button" id="delete" name="id" value="1" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button onclick="del(${content.id})"  type="button" class="btn btn-danger" id="buttonDeleteSubmit">Delete</button>
+                </div>
+`}
+    // onclick="er(${u.id})"
 </script>
 </body>
 </html>
+<!--<script src="../javascript/untitled.js"></script>-->

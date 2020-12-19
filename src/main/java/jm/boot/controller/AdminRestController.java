@@ -69,6 +69,7 @@ public class AdminRestController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+
     @GetMapping(value = "/{id}")
     public ResponseEntity<User> read(@PathVariable(name = "id") int id) {
         final User client = userService.getById(id);

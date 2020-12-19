@@ -19,3 +19,4 @@ let response = await fetch('http://localhost:8080/adminn', {
 let result = await response.json();
 alert(result.message);
 
+
