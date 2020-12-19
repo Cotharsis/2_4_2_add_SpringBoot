@@ -18,7 +18,7 @@ import java.util.Set;
 
 
 @RestController
-@RequestMapping("/adminnn")
+@RequestMapping("/adminn")
 public class AdminRestController {
 
     @Autowired
@@ -61,7 +61,7 @@ public class AdminRestController {
 //        return modelAndView;
 //    }
 
-    @GetMapping
+    @GetMapping("/ad")
     public ResponseEntity<List<User>> read() {
         final List<User> clients = userService.allUsers();
         return clients != null &&  !clients.isEmpty()
