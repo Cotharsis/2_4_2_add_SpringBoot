@@ -13,9 +13,9 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div>
-        <b><a class="navbar-brand" text="userA.username" style="color: whitesmoke"></a></b>
+        <b><a class="navbar-brand" th:text="${userA.username}" style="color: whitesmoke"></a></b>
         <a class="navbar-brand" style="color: #f5f5f5">with roles:</a>
-        <a class="navbar-brand" style="color: #f5f5f5" text="userA.roles"></a>
+        <a class="navbar-brand" style="color: #f5f5f5"  th:text="${userA.roles}"></a>
     </div>
 
     <div class="collapse navbar-collapse " id="navbarSupportedContent">
@@ -159,12 +159,12 @@
                                             <th>Roles</th>
                                         </tr>
                                         <tr>
-                                            <td text="${userA.id}"></td>
-                                            <td text="${userA.name}"></td>
-                                            <td text="${userA.address}"></td>
-                                            <td text="${userA.year}"></td>
-                                            <td text="${userA.username}"></td>
-                                            <td text="${userA.roles}"></td>
+                                            <td th:text="${userA.id}"></td>
+                                            <td th:text="${userA.name}"></td>
+                                            <td th:text="${userA.address}"></td>
+                                            <td th:text="${userA.year}"></td>
+                                            <td th:text="${userA.username}"></td>
+                                            <td th:text="${userA.roles}"></td>
                                         </tr>
                                         </th:block>
                                     </table>
@@ -215,7 +215,7 @@
 <!--кнопка добавления-->
 <script>
     async function ad(){
-        const userByIdURL = `http://localhost:8080/adminn`
+        const userByIdURL = `http://localhost:8080/admin`
         console.log('addUser')
         fetch(userByIdURL,{
             method: 'POST',
@@ -239,7 +239,7 @@
 <!--кнопка удаления-->
 <script>
     async function del(id){
-        const userByIdURL = `http://localhost:8080/adminn/${id}`
+        const userByIdURL = `http://localhost:8080/admin/${id}`
         console.log('deleteUser activated')
         fetch(userByIdURL,{
             method: 'DELETE'
@@ -252,7 +252,7 @@
 <!--кнопка редактирования-->
 <script>
     async function ed(id){
-        const userByIdURL = `http://localhost:8080/adminn`
+        const userByIdURL = `http://localhost:8080/admin`
         console.log('editUser activated')
         fetch(userByIdURL,{
             method: 'PUT',
@@ -275,7 +275,7 @@
 
 <!-- все пользователи -->
 <script>
-    fetch("http://localhost:8080/adminn/ad").then(
+    fetch("http://localhost:8080/admin/ad").then(
         res => {
             res.json().then(
                 data => {
@@ -313,7 +313,7 @@
 <!--модалка редактирование-->
 <script>
     async function edit(id){
-        let URL = 'http://localhost:8080/adminn/'
+        let URL = 'http://localhost:8080/admin/'
         let response = await fetch( URL + id);
         let content = await response.json();
         console.log(content)
@@ -406,7 +406,7 @@
 <!--модалка удаление-->
 <script>
     async function ddelete(id){
-        let URL = 'http://localhost:8080/adminn/'
+        let URL = 'http://localhost:8080/admin/'
         let response = await fetch( URL + id);
         let content = await response.json();
         console.log(content)
