@@ -21,7 +21,6 @@
     <div class="collapse navbar-collapse " id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
         </ul>
-
         <form class="form-inline my-2 my-lg-0">
             <ul class="navbar-nav mr-auto">
                 <a class="nav-link " href="/logout">Logout</a>
@@ -42,8 +41,7 @@
 
     <div class="tab-content min-vh-100 col-lg-10" id="v-pills-tabContent">
         <!--        ПАНЕЛЬ АДМИНА-->
-        <div class="tab-pane fade show active " id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"
-             style="background-color: #f3f7f8">
+        <div class="tab-pane fade show active " id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" style="background-color: #f3f7f8">
             <div class="min-vh-100 col-lg-12  ">
                 <br>
                 <h1>Admin panel</h1>
@@ -234,8 +232,6 @@
     }
 
 </script>
-
-
 <!--кнопка удаления-->
 <script>
     async function del(id){
@@ -295,18 +291,14 @@
                                          class="btn btn-primary" data-target="#ModalEdit">Edit</button></td>`
                               temp += `<td><button onclick="ddelete(${u.id})" type="button" data-toggle="modal"
                                              class="btn btn-danger" data-target="#ModalDelete">Delete</button></td>`
-
-
-                            // temp += "<td>" + "<button type='button' data-toggle='modal' class='btn btn-danger'"
-                            //     + "data-target='#ModalDelete' data-user-id='" + u.id + "'>Delete</button>"+'</td><tr>';
-                            // <button type="button" class="btn btn-danger" data-toggle="modal"
-                            //         th:data-target="'#edit-modal2-' + ${userq.id}">Delete</button>
                         })
                         document.getElementById("data").innerHTML = temp;
                     }
+
                 }
             )
         }
+
     )
 </script>
 
@@ -398,9 +390,7 @@
                 <div class=" modal-footer col-md-10 mx-auto" style="float:right;">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button onclick="ed(${content.id})"  type="button" class="btn btn-primary" id="buttonEditSubmit">Edit</button>
-                </div>
-
-`
+                </div>`
     }
 </script>
 <!--модалка удаление-->
@@ -479,9 +469,8 @@
                 <div class=" modal-footer col-md-12 mx-auto" style="float:right;">
                     <button type="button" id="delete" name="id" value="1" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button onclick="del(${content.id})"  type="button" class="btn btn-danger" id="buttonDeleteSubmit">Delete</button>
-                </div>
-`}
-    // onclick="er(${u.id})"
+                </div>`
+    }
 </script>
 
 <!-- Optional JavaScript -->
@@ -496,7 +485,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+    <script src="untitled.js"></script>
 </div>
 </body>
 </html>
-<!--<script src="../javascript/untitled.js"></script>-->
