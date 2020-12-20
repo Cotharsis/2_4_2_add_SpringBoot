@@ -243,35 +243,15 @@
         console.log('deleteUser activated')
         fetch(userByIdURL,{
             method: 'DELETE'
-        })}
-
-    // async function del(id){
-    //     alert(id)
-    //     $.ajax({
-    //         url: 'http://localhost:8080/adminn/' + id,
-    //         type: 'DELETE',
-    //         success: function(result) {
-    //             // Do something with the result
-    //         }
-    // })}
-
-    // });
-    // $.ajax({
-    //     url: "http://localhost:8080/adminn/" + id,
-    //     type: "DELETE",
-    //     dataType: "text"
-    // }).done(() => {
-    //     location.reload();
-    // })
-    // alert(id)}
-
-
+        // }).done(() => {
+        //     location.reload();
+        })
+        location.reload();
+    }
 </script>
 <!--кнопка редактирования-->
 <script>
-
     async function ed(id){
-
         const userByIdURL = `http://localhost:8080/adminn`
         console.log('editUser activated')
         fetch(userByIdURL,{
@@ -288,8 +268,11 @@
             }),
             headers: {'Content-type': 'application/json; charset=UTF-8'}
         })
+        location.reload();
+        location.reload();
     }
 </script>
+
 <!-- все пользователи -->
 <script>
     fetch("http://localhost:8080/adminn/ad").then(
