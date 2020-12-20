@@ -122,17 +122,10 @@
                                                 <select multiple class="form-control" type="text" name="roles" id="addRoles" style="height: 60px;">
                                                         <option text="ROLE_ADMIN"> ROLE_ADMIN</option>
                                                         <option text="ROLE_USER">ROLE_USER</option>
-<!--                                                    </div>:each="roleA : ${allRoles}">-->
-<!--                                                        <option th:text="${roleA}"></option>-->
-<!--                                                    </div>-->
                                                 </select>
                                             </div>
                                             <br>
-<!--                                        <button id="sumbitAdd" type="submit" class="btn btn-success">Add new user </button>-->
-<!--                                        <input id="sumbitAdd" type="submit" class="btn btn-success" value="Add new user">-->
-<!--                                        <button type="button" class="btn btn-primary" id="sumbitAdd">Add new us</button>-->
                                         <button onclick="ad()"  type="button" class="btn btn-primary" id="sumbitAdd">Edit</button>
-<!--                                        </form>-->
                                     </div>
                                 </div>
                             </div>
@@ -219,16 +212,30 @@
     </div>
 </div>
 
-<!--кнопка редактирования-->
+<!--кнопка добавления-->
 <script>
-    async function ed(id){
-        const userByIdURL = `http://localhost:8080/adminn/${id}`
-        console.log('editUser activated')
-        // fetch(userByIdURL,{
-        //     method: 'DELETE'
-        // })
+    async function ad(){
+        const userByIdURL = `http://localhost:8080/adminn`
+        console.log('addUser')
+        fetch(userByIdURL,{
+            method: 'POST',
+
+            body: JSON.stringify({
+                name: $('#addName').val(),
+                address: $('#addAddress').val(),
+                year: $('#addYear').val(),
+                username: $('#addUsername').val(),
+                password: $('#addPassword').val(),
+                roles: $("#addRoles").val()
+            }),
+            headers: {'Content-type': 'application/json; charset=UTF-8'}
+        })
+        location.reload();
     }
+
 </script>
+
+
 <!--кнопка удаления-->
 <script>
     async function del(id){
@@ -260,27 +267,28 @@
 
 
 </script>
-<!--кнопка добавления-->
+<!--кнопка редактирования-->
 <script>
-    async function ad(){
+
+    async function ed(id){
+
         const userByIdURL = `http://localhost:8080/adminn`
-        console.log('addUser')
+        console.log('editUser activated')
         fetch(userByIdURL,{
-            method: 'POST',
+            method: 'PUT',
 
             body: JSON.stringify({
-                name: $('#addName').val(),
-                address: $('#addAddress').val(),
-                year: $('#addYear').val(),
-                username: $('#addUsername').val(),
-                password: $('#addPassword').val(),
-                roles: $("#addRoles").val()
+                id: id,
+                name: $('#edName').val(),
+                address: $('#edAddress').val(),
+                year: $('#edYear').val(),
+                username: $('#edUsername').val(),
+                password: $('#edPassword').val(),
+                roles: $("#edRoles").val()
             }),
             headers: {'Content-type': 'application/json; charset=UTF-8'}
         })
-        location.reload();
     }
-
 </script>
 <!-- все пользователи -->
 <script>
@@ -318,19 +326,7 @@
         }
     )
 </script>
-<!-- Optional JavaScript -->
-<div>
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-                crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-                crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-                crossorigin="anonymous"></script>
-</div>
+
 <!--модалка редактирование-->
 <script>
     async function edit(id){
@@ -347,67 +343,69 @@
                         <div  class="form-group">
 
                             <div  class="font-weight-bold ">
-                                <d><label for="id">ID</label></d>
+                                <d><label for="edId">ID</label></d>
                                 <input type="text"
                                        class="form-control"
-                                       name="id" id="id"
-                                    placeholder="${content.id}">
+                                       name="id" id="edId"
+                                    placeholder="${content.id}" disabled>
                             </div>
 
                             <div class="font-weight-bold ">
-                                <d><label for="name">First Name</label></d>
+                                <d><label for="edName">First Name</label></d>
                                 <input type="text"
                                        class="form-control"
-                                       name="name" id="name1"
+                                       name="name" id="edName"
                                  placeholder="${content.name}">
 
                             </div>
                             <div class="font-weight-bold">
-                                <d><label for="address">LastName</label></d>
+                                <d><label for="edAddress">LastName</label></d>
                                 <input type="text"
                                        class="form-control"
                                        name="address"
-                                       id="address1"
+                                       id="edAddress"
                                     placeholder="${content.address}">
 
                             </div>
                             <div class="font-weight-bold">
-                                <d><label for="year">Age</label></d>
+                                <d><label for="edYear">Age</label></d>
                                 <input type="text"
                                        class="form-control"
-                                       name="year" id="year1"
+                                       name="year" id="edYear"
                                     placeholder="${content.year}">
 
                             </div>
                             <div class="font-weight-bold">
-                                <d><label for="username">Email</label></d>
+                                <d><label for="edUsername">Email</label></d>
                                 <input type="text"
                                        class="form-control"
                                        name="username"
-                                       id="username1"
+                                       id="edUsername"
                                   placeholder="${content.username}">
 
                             </div>
                             <div class="font-weight-bold">
-                                <d><labelfor="password">Password</label></d>
+                                <d><label for="edPassword">Password</label></d>
                                 <input type="text"
                                        class="form-control"
                                        name="password"
-                                       id="password1"
+                                       id="edPassword"
                                 placeholder="${content.password}">
 
                             </div>
 
                             <div class="font-weight-bold">
                                 <div class="font-weight-bold">
-                                    <label for="roles">Role</label>
+                                    <label for="edRoles">Role</label>
                                     <select multiple
                                             class="form-control"
                                             type="text"
                                             name="roles"
-                                            id="roles10"
-                                            style="height: 60px;">
-                                         placeholder="${content.roles}">
+                                            id="edRoles"
+                                         placeholder="${content.roles}"
+                                          style="height: 60px">
+                                                        <option text="ROLE_ADMIN"> ROLE_ADMIN</option>
+                                                        <option text="ROLE_USER">ROLE_USER</option>
                                     </select>
                                 </div>
                             </div>
@@ -420,9 +418,7 @@
                 </div>
 
 `
-
     }
-
 </script>
 <!--модалка удаление-->
 <script>
@@ -487,14 +483,9 @@
                             <div class="font-weight-bold">
                                 <div class="font-weight-bold">
                                     <label for="roles">Role</label>
-                                    <select multiple
-                                            class="form-control"
-                                            type="text"
-                                            name="roles"
-                                            id="roles10"
-                                            style="height: 60px;">
-
-                                          disabled>
+                                    <select multiple class="form-control" type="text" name="roles" id="roles10" style="height: 60px;" placeholder="${content.roles}" disabled>
+                                                        <option text="ROLE_ADMIN"> ROLE_ADMIN</option>
+                                                        <option text="ROLE_USER">ROLE_USER</option>
                                     </select>
                                 </div>
                             </div>
@@ -509,6 +500,20 @@
 `}
     // onclick="er(${u.id})"
 </script>
+
+<!-- Optional JavaScript -->
+<div>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+</div>
 </body>
 </html>
 <!--<script src="../javascript/untitled.js"></script>-->
